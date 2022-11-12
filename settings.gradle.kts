@@ -17,11 +17,11 @@ dependencyResolutionManagement {
 rootProject.name = "ZennApp"
 include(":app")
 val modules = listOf(
-    "core-designsystem"
+    "core-designsystem",
+    "core-model",
 )
 modules.forEach { filePath ->
     val (type, name) = filePath.split("-")
     val newProjectName = ":${type}:${name}"
     include(newProjectName)
 }
-include(":core:designsystem")
