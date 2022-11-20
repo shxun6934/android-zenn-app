@@ -19,6 +19,7 @@ include(":app")
 val modules = listOf(
     "core-data",
     "core-designsystem",
+    "core-domain",
     "core-model",
     "core-network",
 )
