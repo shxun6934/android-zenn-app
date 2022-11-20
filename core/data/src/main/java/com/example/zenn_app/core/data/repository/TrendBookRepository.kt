@@ -1,8 +1,9 @@
 package com.example.zenn_app.core.data.repository
 
 import com.example.zenn_app.core.model.data.Book
+import kotlinx.coroutines.flow.Flow
 
 interface TrendBookRepository {
 
-    suspend fun fetchTrendBooks(): List<Book>
+    fun fetchTrendBooks(): Flow<List<Book>>
 }

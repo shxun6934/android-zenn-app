@@ -1,7 +1,11 @@
 package com.example.zenn_app.core.data.di
 
-import com.example.zenn_app.core.data.repository.*
-import com.example.zenn_app.data.repository.*
+import com.example.zenn_app.core.data.repository.TrendBookRepository
+import com.example.zenn_app.core.data.repository.TrendBookRepositoryImpl
+import com.example.zenn_app.core.data.repository.TrendIdeaArticleRepository
+import com.example.zenn_app.core.data.repository.TrendIdeaArticleRepositoryImpl
+import com.example.zenn_app.core.data.repository.TrendTechArticleRepository
+import com.example.zenn_app.core.data.repository.TrendTechArticleRepositoryImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
