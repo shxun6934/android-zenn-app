@@ -1,7 +1,7 @@
 package com.example.zenn_app.model.data
 
 import com.example.zenn_app.model.data.type.ArticleType
-import java.time.Instant
+import kotlinx.datetime.Instant
 
 data class Article(
     val id: Int,

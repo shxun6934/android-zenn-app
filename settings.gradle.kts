@@ -17,8 +17,10 @@ dependencyResolutionManagement {
 rootProject.name = "ZennApp"
 include(":app")
 val modules = listOf(
+    "core-data",
     "core-designsystem",
     "core-model",
+    "core-network",
 )
 modules.forEach { filePath ->
     val (type, name) = filePath.split("-")

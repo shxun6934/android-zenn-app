@@ -1,6 +1,6 @@
 package com.example.zenn_app.model.data
 
-import java.time.Instant
+import kotlinx.datetime.Instant
 
 data class Book(
     val id: Int,
