@@ -22,6 +22,7 @@ val modules = listOf(
     "core-domain",
     "core-model",
     "core-network",
+    "core-ui",
 )
 modules.forEach { filePath ->
     val (type, name) = filePath.split("-")
