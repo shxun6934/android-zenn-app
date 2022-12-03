@@ -29,6 +29,7 @@ android {
 dependencies {
     implementation(project(":core:designsystem"))
     implementation(project(":core:model"))
+    implementation(project(":core:ui"))
 
     implementation(libs.androidxCoreKtx)
     implementation(libs.androidxActivityCompose)
@@ -36,6 +37,7 @@ dependencies {
     implementation(libs.androidxComposeUiToolingPreview)
     implementation(libs.androidxComposeMaterial3)
     implementation(libs.androidxCoreSplashscreen)
+    implementation(libs.androidxNavigationCompose)
 
     debugImplementation(libs.androidxComposeUiTooling)
 }
