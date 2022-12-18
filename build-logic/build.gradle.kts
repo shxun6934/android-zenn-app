@@ -50,5 +50,9 @@ gradlePlugin {
             id = "zenn_app.android.library.compose"
             implementationClass = "AndroidLibraryComposeConventionPlugin"
         }
+        register("androidFeature") {
+            id = "zenn_app.android.feature"
+            implementationClass = "AndroidFeatureConventionPlugin"
+        }
     }
 }

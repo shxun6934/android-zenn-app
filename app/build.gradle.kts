@@ -31,13 +31,16 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:ui"))
 
+    implementation(project(":feature:tech"))
+
     implementation(libs.androidxCoreKtx)
+
     implementation(libs.androidxActivityCompose)
+
     implementation(libs.androidxComposeUi)
-    implementation(libs.androidxComposeUiToolingPreview)
     implementation(libs.androidxComposeMaterial3)
-    implementation(libs.androidxCoreSplashscreen)
+    implementation(libs.androidxComposeRuntime)
     implementation(libs.androidxNavigationCompose)
 
-    debugImplementation(libs.androidxComposeUiTooling)
+    implementation(libs.androidxCoreSplashscreen)
 }

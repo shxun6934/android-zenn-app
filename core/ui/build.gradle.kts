@@ -16,11 +16,13 @@ dependencies {
     implementation(libs.androidxComposeFoundationLayout)
     implementation(libs.androidxComposeMaterialIconsExtended)
     implementation(libs.androidxComposeMaterial3)
-    implementation(libs.androidxComposeMaterial3WindowSizeClass)
     implementation(libs.androidxComposeRuntime)
     implementation(libs.androidxComposeUi)
     implementation(libs.androidxComposeUiToolingPreview)
     implementation(libs.androidxComposeUiUtil)
+
+    implementation(libs.accompanistFlowlayout)
+    implementation(libs.accompanistWebview)
 
     implementation(libs.coilKt)
     implementation(libs.coilKtCompose)

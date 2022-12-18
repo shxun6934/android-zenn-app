@@ -35,10 +35,12 @@ import com.example.zenn_app.core.designsystem.theme.Gray95
 import com.example.zenn_app.core.designsystem.theme.ZennAppTheme
 import com.example.zenn_app.core.ui.component.ZennNavigationBar
 import com.example.zenn_app.core.ui.component.ZennNavigationBarItem
+import com.example.zenn_app.feature.tech.TechArticleScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
@@ -49,116 +51,104 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
 
-@OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
-@Composable
-private fun ZennApp() {
-    val navController = rememberNavController()
+    @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
+    @Composable
+    private fun ZennApp() {
+        val navController = rememberNavController()
 
-    Scaffold(
-        contentWindowInsets = WindowInsets(0, 0, 0, 0),
-        bottomBar = {
-            ZennNavigationBar {
-                TopLevelDestination.values().asList().forEach { destination ->
-                    val currentDestination =
-                        navController.currentBackStackEntryAsState().value?.destination
-                    val selected = currentDestination?.hierarchy?.any {
-                        it.route?.contains(destination.name, true) ?: false
-                    } ?: false
+        Scaffold(
+            contentWindowInsets = WindowInsets(0, 0, 0, 0),
+            bottomBar = {
+                ZennNavigationBar {
+                    TopLevelDestination.values().asList().forEach { destination ->
+                        val currentDestination =
+                            navController.currentBackStackEntryAsState().value?.destination
+                        val selected = currentDestination?.hierarchy?.any {
+                            it.route?.contains(destination.name, true) ?: false
+                        } ?: false
 
-                    val icon = if (selected) {
-                        destination.selectedIcon
-                    } else {
-                        destination.unselectedIcon
+                        val icon = if (selected) {
+                            destination.selectedIcon
+                        } else {
+                            destination.unselectedIcon
+                        }
+
+                        ZennNavigationBarItem(
+                            selected = selected,
+                            onClick = { navigateToTopLevelDestination(destination, navController) },
+                            icon = {
+                                Icon(
+                                    imageVector = icon,
+                                    contentDescription = if (selected) {
+                                        "${destination.name} selected"
+                                    } else {
+                                        destination.name
+                                    }
+                                )
+                            },
+                            label = { Text(text = destination.title) }
+                        )
                     }
-
-                    ZennNavigationBarItem(
-                        selected = selected,
-                        onClick = { navigateToTopLevelDestination(destination, navController) },
-                        icon = {
-                            Icon(
-                                imageVector = icon,
-                                contentDescription = if (selected) {
-                                    "${destination.name} selected"
-                                } else {
-                                    destination.name
-                                }
-                            )
-                        },
-                        label = { Text(text = destination.title) }
-                    )
                 }
             }
-        }
-    ) { padding ->
-        Row(
-            Modifier
-                .fillMaxSize()
-                .windowInsetsPadding(
-                    WindowInsets.safeDrawing.only(
-                        WindowInsetsSides.Horizontal
+        ) { padding ->
+            Row(
+                Modifier
+                    .fillMaxSize()
+                    .windowInsetsPadding(
+                        WindowInsets.safeDrawing.only(
+                            WindowInsetsSides.Horizontal
+                        )
                     )
-                )
-        ) {
-            NavHost(
-                navController = navController,
-                startDestination = TopLevelDestination.TECH.name,
-                modifier = Modifier
-                    .padding(padding)
-                    .consumedWindowInsets(padding)
             ) {
-                composable(route = TopLevelDestination.TECH.name) {
-                    // TODO
-                    // TechArticleScreen()
-                    Surface(
-                        color = MaterialTheme.colorScheme.primaryContainer
-                    ) {
-                        Text(
-                            text = TopLevelDestination.TECH.title,
-                            style = MaterialTheme.typography.titleMedium,
-                            modifier = Modifier.fillMaxSize(),
-                            textAlign = TextAlign.Center
-                        )
+                NavHost(
+                    navController = navController,
+                    startDestination = TopLevelDestination.TECH.name,
+                    modifier = Modifier
+                        .padding(padding)
+                        .consumedWindowInsets(padding)
+                ) {
+                    composable(route = TopLevelDestination.TECH.name) {
+                        TechArticleScreen(TopLevelDestination.TECH.title)
                     }
-                }
-                composable(route = TopLevelDestination.IDEA.name) {
-                    // TODO
-                    // IdeaArticleScreen()
-                    Surface(
-                        color = MaterialTheme.colorScheme.surfaceVariant
-                    ) {
-                        Text(
-                            text = TopLevelDestination.IDEA.title,
-                            style = MaterialTheme.typography.titleMedium,
-                            modifier = Modifier.fillMaxSize(),
-                            textAlign = TextAlign.Center
-                        )
+                    composable(route = TopLevelDestination.IDEA.name) {
+                        // TODO
+                        // IdeaArticleScreen()
+                        Surface(
+                            color = MaterialTheme.colorScheme.surfaceVariant
+                        ) {
+                            Text(
+                                text = TopLevelDestination.IDEA.title,
+                                style = MaterialTheme.typography.titleMedium,
+                                modifier = Modifier.fillMaxSize(),
+                                textAlign = TextAlign.Center
+                            )
+                        }
                     }
-                }
-                composable(route = TopLevelDestination.BOOK.name) {
-                    // TODO
-                    // BookScreen()
-                    Surface(
-                        color = Gray95
-                    ) {
-                        Text(
-                            text = TopLevelDestination.BOOK.title,
-                            style = MaterialTheme.typography.titleMedium,
-                            modifier = Modifier.fillMaxSize(),
-                            textAlign = TextAlign.Center
-                        )
+                    composable(route = TopLevelDestination.BOOK.name) {
+                        // TODO
+                        // BookScreen()
+                        Surface(
+                            color = Gray95
+                        ) {
+                            Text(
+                                text = TopLevelDestination.BOOK.title,
+                                style = MaterialTheme.typography.titleMedium,
+                                modifier = Modifier.fillMaxSize(),
+                                textAlign = TextAlign.Center
+                            )
+                        }
                     }
                 }
             }
         }
     }
-}
 
-private fun navigateToTopLevelDestination(
-    topLevelDestination: TopLevelDestination,
-    navController: NavHostController
-) {
+    private fun navigateToTopLevelDestination(
+        topLevelDestination: TopLevelDestination,
+        navController: NavHostController
+    ) {
 //    val topLevelNavOptions = navOptions {
 //        popUpTo(navController.graph.findStartDestination().id) {
 //            saveState = true
@@ -167,31 +157,32 @@ private fun navigateToTopLevelDestination(
 //        restoreState = true
 //    }
 
-    when (topLevelDestination) {
-        TopLevelDestination.TECH -> navController.navigate(TopLevelDestination.TECH.name)
-        TopLevelDestination.IDEA -> navController.navigate(TopLevelDestination.IDEA.name)
-        TopLevelDestination.BOOK -> navController.navigate(TopLevelDestination.BOOK.name)
+        when (topLevelDestination) {
+            TopLevelDestination.TECH -> navController.navigate(TopLevelDestination.TECH.name)
+            TopLevelDestination.IDEA -> navController.navigate(TopLevelDestination.IDEA.name)
+            TopLevelDestination.BOOK -> navController.navigate(TopLevelDestination.BOOK.name)
+        }
     }
-}
 
-private enum class TopLevelDestination(
-    val selectedIcon: ImageVector,
-    val unselectedIcon: ImageVector,
-    val title: String,
-) {
-    TECH(
-        selectedIcon = ZennIcon.TechBorder,
-        unselectedIcon = ZennIcon.Tech,
-        title = "Tech"
-    ),
-    IDEA(
-        selectedIcon = ZennIcon.IdeaBorder,
-        unselectedIcon = ZennIcon.Idea,
-        title = "Idea"
-    ),
-    BOOK(
-        selectedIcon = ZennIcon.BookBorder,
-        unselectedIcon = ZennIcon.Book,
-        title = "Book"
-    )
+    private enum class TopLevelDestination(
+        val selectedIcon: ImageVector,
+        val unselectedIcon: ImageVector,
+        val title: String,
+    ) {
+        TECH(
+            selectedIcon = ZennIcon.TechBorder,
+            unselectedIcon = ZennIcon.Tech,
+            title = "Tech"
+        ),
+        IDEA(
+            selectedIcon = ZennIcon.IdeaBorder,
+            unselectedIcon = ZennIcon.Idea,
+            title = "Idea"
+        ),
+        BOOK(
+            selectedIcon = ZennIcon.BookBorder,
+            unselectedIcon = ZennIcon.Book,
+            title = "Book"
+        )
+    }
 }
