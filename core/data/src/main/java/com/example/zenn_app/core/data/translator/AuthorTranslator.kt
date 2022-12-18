@@ -7,7 +7,7 @@ object AuthorTranslator {
 
     fun NetworkAuthor.asExternalModel(): Author = Author(
         id = id,
-        userName = userName,
+        userName = username,
         name = name,
         avatarSmallUrl = avatarSmallUrl
     )

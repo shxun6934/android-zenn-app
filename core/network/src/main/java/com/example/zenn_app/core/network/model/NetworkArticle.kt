@@ -1,8 +1,8 @@
 package com.example.zenn_app.core.network.model
 
+import com.example.zenn_app.core.model.data.type.ArticleType
 import com.example.zenn_app.core.network.model.util.ArticleTypeSerializer
 import com.example.zenn_app.core.network.model.util.InstantSerializer
-import com.example.zenn_app.core.model.data.type.ArticleType
 import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
@@ -27,6 +27,6 @@ data class NetworkArticle(
     @Serializable(InstantSerializer::class)
     val sourceRepoUpdatedAt: Instant?,
     val path: String,
-    val author: NetworkAuthor,
-    val publication: NetworkPublication?
+    val user: NetworkAuthor,
+    val publication: NetworkPublication? = null
 )

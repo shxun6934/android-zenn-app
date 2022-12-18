@@ -19,6 +19,6 @@ object BookTranslator {
         sourceRepoUpdatedAt = sourceRepoUpdatedAt,
         coverImageSmallUrl = coverImageSmallUrl,
         path = path,
-        author = author.asExternalModel()
+        author = user.asExternalModel()
     )
 }

@@ -1,3 +1,4 @@
+
 package com.example.zenn_app
 
 import android.os.Bundle
@@ -110,7 +111,7 @@ class MainActivity : ComponentActivity() {
                         .consumedWindowInsets(padding)
                 ) {
                     composable(route = TopLevelDestination.TECH.name) {
-                        TechArticleScreen(TopLevelDestination.TECH.title)
+                        TechArticleScreen()
                     }
                     composable(route = TopLevelDestination.IDEA.name) {
                         // TODO

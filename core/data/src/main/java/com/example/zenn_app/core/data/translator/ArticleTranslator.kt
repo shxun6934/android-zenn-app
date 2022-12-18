@@ -23,7 +23,7 @@ object ArticleTranslator {
             bodyUpdatedAt = bodyUpdatedAt,
             sourceRepoUpdatedAt = sourceRepoUpdatedAt,
             path = path,
-            author = author.asExternalModel(),
+            author = user.asExternalModel(),
             publication = publication?.asExternalModel()
         )
 }

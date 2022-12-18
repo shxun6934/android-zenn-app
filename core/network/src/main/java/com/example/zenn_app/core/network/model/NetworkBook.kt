@@ -22,5 +22,5 @@ data class NetworkBook(
     val sourceRepoUpdatedAt: Instant?,
     val coverImageSmallUrl: String?,
     val path: String,
-    val author: NetworkAuthor
+    val user: NetworkAuthor
 )

@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.IntrinsicSize
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
@@ -72,6 +73,8 @@ fun ArticleListItem(
             )
         }
     }
+
+    Spacer(modifier = Modifier.height(20.dp))
 }
 
 @Composable
@@ -166,7 +169,7 @@ private fun AvatarImage(
             ) {
                 AsyncImage(
                     model = publicationAvatarUrl,
-                    contentDescription = "Author avatar image url.",
+                    contentDescription = "Publication avatar image url.",
                     modifier = Modifier
                         .size(26.dp)
                         .clip(RoundedCornerShape(10.dp))
@@ -175,9 +178,9 @@ private fun AvatarImage(
                     model = authorAvatarUrl,
                     contentDescription = "Author avatar image url.",
                     modifier = Modifier
+                        .offset(x = 14.dp, y = 14.dp)
                         .size(18.dp)
                         .clip(CircleShape)
-                        .offset(x = 14.dp, y = 14.dp)
                 )
             }
         } ?: run {
